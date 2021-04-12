@@ -1,11 +1,11 @@
 # Assignment_react_aspnet_sql
 Collection of information for user search by a proxy server built by react app, asp.net webapi, sql server.
 
-#WebAPI
+#WebAPI: Model
 1. create database by migrations from model (classes)
 2. command: update-database
 
-#SQLQuery.sql
+#WebAPI: SQLQuery.sql
 1. Create Tables: created by webapi
 2. Stored Procedure: run on the db
 
