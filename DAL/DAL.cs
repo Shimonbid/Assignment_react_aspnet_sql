@@ -9,8 +9,13 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    public class DAL
+    public sealed class DAL
     {
+        //Singleton
+        private static DAL instance = null;
+        private static readonly object padlock = new object();
+
+        //Entities
         private DBInfoEntities db;
 
         public DAL()
@@ -18,11 +23,26 @@ namespace DAL
             db = new DBInfoEntities();
         }
 
+        public static DAL Instance
+        {
+            get
+            {
+                lock (padlock)
+                {
+                    if (instance == null)
+                    {
+                        instance = new DAL();
+                    }
+                    return instance;
+                }
+            }
+        }
+
         //LINQ = StoredProcedure
         public object GetResultsFromDateByLINQ(DateTime datetime)
         {
             return db.Results.Where(x => x.UserQuery.DateQuery > datetime)
-              .Select(s => new {s.UserQuery.Query, s.Title, s.Link });
+              .Select(s => new { s.UserQuery.Query, s.Title, s.Link });
         }
 
         //Stored Procedure Simple

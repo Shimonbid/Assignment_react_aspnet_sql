@@ -72,14 +72,14 @@ namespace WebAPI.Controllers
             var datetime = DateTime.Parse(date);
 
             //CodeFirst
-            var results = _context.Results.Where(x => x.UserQueries.DateQuery > datetime)
-              .Select(s => new { s.UserQueries.Query, s.Title, s.Link });
+            //var results = _context.Results.Where(x => x.UserQueries.DateQuery > datetime)
+            //  .Select(s => new { s.UserQueries.Query, s.Title, s.Link });
 
             //DAL: DBFirst Use LINQ
             //var results = dal.GetResultsFromDateByLINQ(datetime);
 
             //DAL: DBFirst Use Stored Procedure
-            //var results = dal.GetResultsFromDateByStoredProcedure(datetime);
+            var results = dal.GetResultsFromDateByStoredProcedure(datetime);
 
             //DAL: Direct Stored Procedure
             //var results = dal.GetResultsFromDateByStoredProcedureDirect(datetime);
