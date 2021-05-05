@@ -1,0 +1,13 @@
+visual studio code (client)
+nude.js (https://nodejs.org/en/download/)
+
+--React
+npx create-react-app react-app
+npm start
+code .
+npm run build
+
+--Angular
+ng new angular-app (y,n)
+ng serve --o (n)
+code .

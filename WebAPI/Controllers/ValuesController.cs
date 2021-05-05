@@ -1,9 +1,12 @@
 ﻿using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -16,10 +19,12 @@ namespace WebAPI.Controllers
     public class ValuesController : ControllerBase
     {
         private readonly UserQueriesContext _context;
+        private DAL dal;
 
         public ValuesController (UserQueriesContext context)
         {
             _context = context;
+            dal = new DAL();
         }
 
         // GET: api/Values/GetResults/{shimon}
@@ -63,10 +68,11 @@ namespace WebAPI.Controllers
         // GET: api/Values/GetResultsFromDate/{"April 9, 2021"}
         [HttpGet("GetResultsFromDate/{date}")]
         public ActionResult GetResultsFromDate(string date)
-        {            
+        {
             var datetime = DateTime.Parse(date);
-            var resultsfromdate = _context.Results.Where(x => x.UserQueries.DateQuery >  datetime)
-                .Select(s => new { s.UserQueries.Query, s.Title, s.Link });
+            var resultsfromdate = _context.Results.Where(x => x.UserQueries.DateQuery > datetime)
+              .Select(s => new { s.UserQueries.Query, s.Title, s.Link });             
+            //var resultsfromdate = dal.StoredProcedureFromDate(datetime);
             return Ok(resultsfromdate);
         }
     }
