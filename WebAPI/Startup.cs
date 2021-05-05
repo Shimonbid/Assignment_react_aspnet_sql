@@ -39,7 +39,7 @@ namespace WebAPI
                     });
             });        
 
-            services.AddDbContext<UserQueriesContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
+            services.AddDbContext<UserQueriesContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DevConnection")));            
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

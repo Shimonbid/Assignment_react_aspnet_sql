@@ -1,16 +1,38 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using DAL.Model;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
-namespace WebAPI
+namespace DAL
 {
     public class DAL
     {
+        private DBInfoEntities db;
+
+        public DAL()
+        {
+            db = new DBInfoEntities();
+        }
+
+        //LINQ = StoredProcedure
+        public object GetResultsFromDateByLINQ(DateTime datetime)
+        {
+            return db.Results.Where(x => x.UserQuery.DateQuery > datetime)
+              .Select(s => new {s.UserQuery.Query, s.Title, s.Link });
+        }
+
+        //Stored Procedure Simple
+        public List<GetResultsByDate_Result> GetResultsFromDateByStoredProcedure(DateTime datetime)
+        {
+            return db.GetResultsByDate(datetime).ToList();
+        }
+
         //Stored Procedure Direct C#
-        public List<Dictionary<string, object>> StoredProcedureFromDate(DateTime datetime)
+        public List<Dictionary<string, object>> GetResultsFromDateByStoredProcedureDirect(DateTime datetime)
         {
             SqlConnection con = new SqlConnection("Server=(localdb)\\ProjectsV13;Database=DBInfo;Trusted_Connection=True;MultipleActiveResultSets=True;");
             SqlCommand cmd = new SqlCommand();

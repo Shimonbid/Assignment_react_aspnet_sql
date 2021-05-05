@@ -19,12 +19,12 @@ namespace WebAPI.Controllers
     public class ValuesController : ControllerBase
     {
         private readonly UserQueriesContext _context;
-        private DAL dal;
+        private DAL.DAL dal;
 
         public ValuesController (UserQueriesContext context)
         {
             _context = context;
-            dal = new DAL();
+            dal = new DAL.DAL();
         }
 
         // GET: api/Values/GetResults/{shimon}
@@ -65,15 +65,26 @@ namespace WebAPI.Controllers
             return Ok(listresults);
         }
 
-        // GET: api/Values/GetResultsFromDate/{"April 9, 2021"}
+        // GET: api/Values/GetResultsFromDate/{"April 12, 2021"}
         [HttpGet("GetResultsFromDate/{date}")]
         public ActionResult GetResultsFromDate(string date)
-        {
+        {                     
             var datetime = DateTime.Parse(date);
-            var resultsfromdate = _context.Results.Where(x => x.UserQueries.DateQuery > datetime)
-              .Select(s => new { s.UserQueries.Query, s.Title, s.Link });             
-            //var resultsfromdate = dal.StoredProcedureFromDate(datetime);
-            return Ok(resultsfromdate);
+
+            //CodeFirst
+            var results = _context.Results.Where(x => x.UserQueries.DateQuery > datetime)
+              .Select(s => new { s.UserQueries.Query, s.Title, s.Link });
+
+            //DAL: DBFirst Use LINQ
+            //var results = dal.GetResultsFromDateByLINQ(datetime);
+
+            //DAL: DBFirst Use Stored Procedure
+            //var results = dal.GetResultsFromDateByStoredProcedure(datetime);
+
+            //DAL: Direct Stored Procedure
+            //var results = dal.GetResultsFromDateByStoredProcedureDirect(datetime);
+
+            return Ok(results);
         }
     }
 }
