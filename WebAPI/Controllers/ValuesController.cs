@@ -24,7 +24,7 @@ namespace WebAPI.Controllers
         public ValuesController (UserQueriesContext context)
         {
             _context = context;
-            dal = new DAL.DAL();
+            dal = DAL.DAL.Instance;
         }
 
         // GET: api/Values/GetResults/{shimon}
@@ -65,21 +65,21 @@ namespace WebAPI.Controllers
             return Ok(listresults);
         }
 
-        // GET: api/Values/GetResultsFromDate/{"April 12, 2021"}
+        // GET: api/Values/GetResultsFromDate/{"April 14, 2021"}
         [HttpGet("GetResultsFromDate/{date}")]
         public ActionResult GetResultsFromDate(string date)
         {                     
             var datetime = DateTime.Parse(date);
 
             //CodeFirst
-            //var results = _context.Results.Where(x => x.UserQueries.DateQuery > datetime)
-            //  .Select(s => new { s.UserQueries.Query, s.Title, s.Link });
+            var results = _context.Results.Where(x => x.UserQueries.DateQuery > datetime)
+              .Select(s => new { s.UserQueries.Query, s.Title, s.Link });
 
             //DAL: DBFirst Use LINQ
             //var results = dal.GetResultsFromDateByLINQ(datetime);
 
             //DAL: DBFirst Use Stored Procedure
-            var results = dal.GetResultsFromDateByStoredProcedure(datetime);
+            //var results = dal.GetResultsFromDateByStoredProcedure(datetime);
 
             //DAL: Direct Stored Procedure
             //var results = dal.GetResultsFromDateByStoredProcedureDirect(datetime);

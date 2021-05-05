@@ -33,6 +33,7 @@ namespace DAL
                     {
                         instance = new DAL();
                     }
+
                     return instance;
                 }
             }
