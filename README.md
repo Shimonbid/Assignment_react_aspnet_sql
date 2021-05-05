@@ -13,7 +13,7 @@ Collection of information for user search by a proxy server built by react app, 
 
 ## DAL (DBFirst)
 1. DBFirst (DB => Entities)
-2. Create project Asp.net (.NetFramework) => DAL
+2. Create project Asp.net (.NetFramework) => DAL => SingleTon (Design Patterns)
 3. Create Folder Model => Add Data => Ado.net => NameServer + NameDB => Tables + SP
 4. Add Class DAL => DBInfoEntities db => Methods (Get and Insert/Update/Delete)
 5. WebAPI: Add Project Reference + App.config + EntityFramework Package
