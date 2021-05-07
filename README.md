@@ -1,16 +1,16 @@
 # Assignment_react_aspnet_sql
 Collection of information for user search by a proxy server built by react app, asp.net webapi, sql server.
 
-## The User Scenario
+### The User Scenario
 1. User(query) => WebAPI => WebClient(DuckDuckGoAPI)
 2. WebClient(DuckDuckGoAPI) => WebAPI(Serialize(results)) => WebAPI(Save db: query, time and results) 
 3. WebAPI(links) => React(Links by paging) => User(Links)
 
-## The Developer Scenario
+### The Developer Scenario
 1. Developer(fromdate) => WebAPI => DB
 2. DB => All results from date for this user
 
-## Development Enviroment
+### Development Enviroment
 1. Visual Studio Code (Client)
 2. Visual Studio 2019 (Server)
 3. SQL Server (DB)
@@ -34,7 +34,7 @@ Collection of information for user search by a proxy server built by react app, 
 1. Support for Stored Procedure
 3. Create Tables PK/FK + Stored Procedure
 4. Create project Asp.net (.NetFramework) => DAL
-5. 5. Create Folder Model => Add Data => Ado.net => NameServer + NameDB => Tables + SP
+5. Create Folder Model => Add Data => Ado.net => NameServer + NameDB => Tables + SP
 6. Add Class DAL => DBInfoEntities db => Methods(CRUD) => SingleTon (Design Patterns)
 7. WebAPI: Add Project Reference + App.config + EntityFramework Package
 
