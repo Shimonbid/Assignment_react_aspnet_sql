@@ -1,4 +1,4 @@
-# Assignment_react_aspnet_sql
+# UserQueriesInfo
 Collection of information for user search by a proxy server built by react app, asp.net webapi, sql server.
 
 ### The User Scenario
@@ -44,8 +44,3 @@ Collection of information for user search by a proxy server built by react app, 
 3. cd NameApp => code . => npm start
 4. Main => react-app/src/index.js
 5. Search => get links by paging
-
-## AngularApp (angular-app)
-1. npm install -g @angular/cli
-2. ng new NameApp => y,n,enter
-3. cd NameApp => code . => ng serve --o
