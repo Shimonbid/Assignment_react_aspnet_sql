@@ -31,12 +31,14 @@ namespace WebAPI.Controllers
         [HttpGet("GetResults/{query}")]        
         public ActionResult GetResults(string query)
         {
+            //db internal
             UserQueries userqueries = new UserQueries();
             userqueries.Query = query;
             userqueries.DateQuery = DateTime.Now;
             _context.UserQueries.Add(userqueries);
             _context.SaveChanges();
 
+            //webclient request
             WebClient webClient = new WebClient();
             string url = String.Format("https://api.duckduckgo.com/?q={0}&format=json", query);
             string text = webClient.DownloadString(url);
