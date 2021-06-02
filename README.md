@@ -1,5 +1,5 @@
 # UserQueriesInfo
-Collection of information for user search by a proxy server built by react app, asp.net webapi, sql server.
+Collection of information for user search by a proxy server built by react app, asp.net core webapi, sql server.
 
 ### The User Scenario
 1. User(query) => WebAPI => WebClient(DuckDuckGoAPI)
